@@ -1,0 +1,20 @@
+import requests
+
+API_KEY = " "
+
+endpoint = "https://api.giphy.com/v1/gifs/trending"
+
+params = {"api_key": API_KEY, "limit": 3, "rating": "g"}
+
+response = requests.get(endpoint, params=params).json()
+
+for gif in response["data"]:
+    title = gif["title"]
+    trending_date = gif["trending_datetime"]
+    url = gif["url"]
+    print(f"{title}, {trending_date}, {url}")
+
+# Output:
+# Jennifer Lopez What GIF by AMAs, 2024-10-07 01:18:29, https://giphy.com/gifs/amas-american-music-awards-amas50-amas-50th-anniversary-special-P2qBTcALM3hVAYzp9c
+# Happy Birthday Party GIF, 0000-00-00 00:00:00, https://giphy.com/gifs/happy-birthday-greetings-celebrations-TFVCX1LgiH0EaEyhZ9
+# Green Day GIF by AMAs, 2024-10-07 00:20:06, https://giphy.com/gifs/amas-american-music-awards-amas50-amas-50th-anniversary-special-hwiARU7BJZ3DAMXDWL
